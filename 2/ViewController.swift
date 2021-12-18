@@ -19,17 +19,21 @@ class ViewController: UIViewController {
         let text1 = Double(textField1.text ?? "") ?? 0
         let text2 = Double(textField2.text ?? "") ?? 0
         let index = segumentedControl.selectedSegmentIndex
-        
-        if index == 0 {
-            label.text = "\(text1 + text2)"
-        } else if index == 1 {
+        switch index {
+        case 0:
+                label.text = "\(text1 + text2)"
+        case 1:
             label.text = "\(text1 - text2)"
-        } else if index == 2 {
+        case 2:
             label.text = "\(text1 * text2)"
-        } else if index == 3 {
-            label.text = "\(text1 / text2)"
-        } else {
-            label.text = "エラー"
+        case 3:
+            if text1 != 0, text2 != 0 {
+                label.text = "\(text1 / text2)"
+            } else {
+                label.text = "0は代入できません"
+            }
+        default:
+            print("aa")
         }
     }
 
